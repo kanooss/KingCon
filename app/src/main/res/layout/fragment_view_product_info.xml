@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+            tools:context=".Main.Product.View.ViewProductInfoFragment">
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content">
+        <!--배경 이미지-->
+        <ImageView
+                android:layout_width="match_parent" android:layout_height="250dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/prodImageSecondary"/>
+        <!--블러 효과-->
+        <ImageView
+                android:layout_width="match_parent" android:layout_height="250dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/grayAlpha"/>
+        <!--메인 이미지-->
+        <ImageView
+                android:layout_width="130dp" android:layout_height="130dp"
+                app:layout_constraintTop_toTopOf="@id/prodImageSecondary"
+                app:layout_constraintBottom_toBottomOf="@id/prodImageSecondary"
+                app:layout_constraintLeft_toLeftOf="@id/prodImageSecondary"
+                app:layout_constraintRight_toRightOf="@id/prodImageSecondary"
+                android:layout_centerInParent="true"
+                android:background="@color/gray9"
+                android:src="@color/white"
+                android:padding="1dp"
+                android:id="@+id/ivProduct"/>
+        <!--제품명-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/prodImageSecondary"
+                app:layout_constraintBottom_toTopOf="@id/tvProductCompany"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:textSize="17dp"
+                android:textColor="@color/black"
+                android:text="제품명"
+                android:gravity="center"
+                android:id="@+id/tvProductName"/>
+        <!--제조사-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvProductName"
+                app:layout_constraintBottom_toTopOf="@id/tvTag"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="3dp"
+                android:textSize="13dp"
+                android:textColor="@color/gray5"
+                android:text="제조사"
+                android:gravity="center"
+                android:id="@+id/tvProductCompany"/>
+        <!--해당 태그 리스-->
+        <android.support.v7.widget.RecyclerView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvProductCompany"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:layout_height="25dp"
+                tools:listitem = "@layout/adapter_tag_list"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:id="@+id/tvTag"/>
+        <!--별점-->
+        <RatingBar
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvTag"
+                app:layout_constraintRight_toLeftOf="@id/tvRatingPoint"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:layout_marginTop="4dp"
+                android:stepSize="0.1"
+                style="?android:attr/ratingBarStyleSmall"
+                android:id="@+id/ratingBar"/>
+        <!--평점-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/ratingBar"
+                app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+                app:layout_constraintLeft_toRightOf="@id/ratingBar"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginStart="5dp"
+                android:text="평점0.0 (0명)"
+                android:id="@+id/tvRatingPoint"/>
+        <!--평가하기 백그라운드-->
+        <View
+                android:layout_width="0dp" android:layout_height="70dp"
+                app:layout_constraintTop_toBottomOf="@id/ratingBar"
+                app:layout_constraintRight_toLeftOf="@id/backgroundWish"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="20dp"
+                android:id="@+id/backgroundRating"/>
+        <!--평가 했을시 평가한 점수 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/backgroundRating"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundRating"
+                app:layout_constraintLeft_toLeftOf="@id/backgroundRating"
+                app:layout_constraintRight_toRightOf="@id/backgroundRating"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:textSize="20dp"
+                android:text="0.0"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tvMyRatingPoint"/>
+        <!--평가하기 이미지-->
+        <ImageView
+                android:layout_width="15dp" android:layout_height="15dp"
+                app:layout_constraintTop_toTopOf="@id/backgroundRating"
+                app:layout_constraintLeft_toLeftOf="@id/backgroundRating"
+                app:layout_constraintRight_toRightOf="@id/backgroundRating"
+                app:layout_constraintBottom_toTopOf="@id/tvRating"
+                android:src="@drawable/ic_rating"
+                android:id="@+id/ivRating"/>
+        <!--평가하기 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/backgroundRating"
+                app:layout_constraintRight_toRightOf="@id/backgroundRating"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundRating"
+                app:layout_constraintTop_toBottomOf="@id/ivRating"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:hint="@string/weight"
+                android:text="@string/rating"
+                android:id="@+id/tvRating"/>
+        <!--위시리스트 백그라운드-->
+        <View
+                android:layout_width="0dp" android:layout_height="70dp"
+                app:layout_constraintTop_toTopOf="@id/backgroundRating"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundRating"
+                app:layout_constraintLeft_toRightOf="@id/backgroundRating"
+                app:layout_constraintRight_toLeftOf="@id/backgroundReview"
+                android:id="@+id/backgroundWish"/>
+        <!--위시리스트 이미지-->
+        <ImageView
+                android:layout_width="15dp" android:layout_height="15dp"
+                app:layout_constraintTop_toTopOf="@id/backgroundWish"
+                app:layout_constraintLeft_toLeftOf="@id/backgroundWish"
+                app:layout_constraintRight_toRightOf="@id/backgroundWish"
+                app:layout_constraintBottom_toTopOf="@id/tvWish"
+                android:src="@drawable/ic_wish"
+                android:id="@+id/ivWish"/>
+        <!--위시리스트 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundWish"
+                app:layout_constraintTop_toBottomOf="@id/ivWish"
+                app:layout_constraintLeft_toLeftOf="@id/backgroundWish"
+                app:layout_constraintRight_toRightOf="@id/backgroundWish"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:hint="@string/weight"
+                android:text="@string/wishlist"
+                android:id="@+id/tvWish"/>
+        <!--리뷰남기기 백그라운-->
+        <View
+                android:layout_width="0dp" android:layout_height="70dp"
+                app:layout_constraintTop_toTopOf="@id/backgroundRating"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundRating"
+                app:layout_constraintTop_toBottomOf="@id/ratingBar"
+                app:layout_constraintLeft_toRightOf="@id/backgroundWish"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layerUserComment"
+                android:id="@+id/backgroundReview"/>
+        <!--리뷰남기기 이미지-->
+        <ImageView
+                android:layout_width="15dp" android:layout_height="15dp"
+                app:layout_constraintTop_toTopOf="@id/backgroundReview"
+                app:layout_constraintLeft_toLeftOf="@id/backgroundReview"
+                app:layout_constraintRight_toRightOf="@id/backgroundReview"
+                app:layout_constraintBottom_toTopOf="@id/tvReview"
+                android:src="@drawable/ic_review"
+                android:id="@+id/ivReview"/>
+        <!--리뷰남기기 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/backgroundReview"
+                app:layout_constraintRight_toRightOf="@id/backgroundReview"
+                app:layout_constraintBottom_toBottomOf="@id/backgroundReview"
+                app:layout_constraintTop_toBottomOf="@id/ivReview"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:hint="@string/weight"
+                android:text="@string/review_reg"
+                android:id="@+id/tvReview"/>
+        <!--접히는 레이아웃 - 등록한 리뷰-->
+        <com.github.aakira.expandablelayout.ExpandableLinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/backgroundReview"
+                app:layout_constraintBottom_toTopOf="@id/divider1"
+                tools:ael_expanded="false"
+                android:orientation="vertical"
+                android:id="@+id/layerUserComment">
+            <View
+                    android:layout_width="match_parent" android:layout_height="1dp"
+                    android:paddingBottom="8dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/gray1"/>
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:minHeight="60dp"
+                    android:maxHeight="100dp"
+                    android:orientation="horizontal">
+                <!--유저 프사-->
+                <ImageView
+                        android:layout_width="40dp" android:layout_height="40dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/tvUserComment"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/ic_user"
+                        android:id="@+id/ivUserCommentProfile"/>
+                <!--유저 리뷰 내용-->
+                <TextView
+                        android:layout_width="0dp" android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/ivUserCommentProfile"
+                        app:layout_constraintRight_toLeftOf="@id/tvReviewRemove"
+                        android:layout_marginStart="15dp"
+                        android:maxLines="3"
+                        android:ellipsize="end"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:text="comment"
+                        android:id="@+id/tvUserComment"/>
+                <!--리뷰 삭제 버튼-->
+                <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/tvReviewCustom"
+                        android:padding="5dp"
+                        android:layout_marginEnd="11dp"
+                        android:textSize="12dp"
+                        android:gravity="right"
+                        android:layout_gravity="bottom"
+                        android:text="@string/remove"
+                        android:id="@+id/tvReviewRemove"/>
+                <!--리뷰 수정 버튼-->
+                <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_gravity="bottom"
+                        android:padding="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:textSize="12dp"
+                        android:gravity="right"
+                        android:text="@string/custom"
+                        android:id="@+id/tvReviewCustom" />
+            </android.support.constraint.ConstraintLayout>
+        </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+        <!--구분선-->
+        <View
+                android:layout_width="match_parent" android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@id/layerUserComment"
+                android:background="@color/gray0_5"
+                android:id="@+id/divider1"/>
+        <!--별점 분포도 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                app:layout_constraintBottom_toTopOf="@id/tvGraphRatingPoint"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:text="@string/ratingInfo"
+                android:id="@+id/tvRatingGraph"/>
+        <!--평점 및 평가 수 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/tvRatingGraph"
+                app:layout_constraintTop_toBottomOf="@id/tvRatingGraph"
+                tools:text="평점 0.0 (0명)"
+                android:id="@+id/tvGraphRatingPoint"/>
+        <!--분포도 자세히 보기 버튼-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvRatingGraph"
+                app:layout_constraintBottom_toBottomOf="@id/tvRatingGraph"
+                android:layout_margin="10dp"
+                android:visibility="visible"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/product_info_more"
+                android:id="@+id/tvGraphMore"/>
+        <!--분포 그래프-->
+        <com.github.mikephil.charting.charts.BarChart
+                android:layout_width="match_parent" android:layout_height="150dp"
+                app:layout_constraintTop_toBottomOf="@id/tvGraphRatingPoint"
+                app:layout_constraintBottom_toTopOf="@id/divider2"
+                android:visibility="invisible"
+                android:id="@+id/graphRating"/>
+        <!--구분선2-->
+        <View
+                android:layout_width="match_parent" android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@id/graphRating"
+                android:layout_marginTop="4dp"
+                android:background="@color/gray0_5"
+                android:id="@+id/divider2"/>
+        <!--제품 정보 텍스트-->
+        <TextView
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/divider2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:text="@string/product_info"
+                android:id="@+id/tvProductInfo"/>
+        <!--제품 정보 자세히보기 버튼-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvProductInfo"
+                app:layout_constraintBottom_toBottomOf="@id/tvProductInfo"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/product_info_more"
+                android:id="@+id/tvProductInfoMore"/>
+        <!--판매단위-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/tvProductInfo"
+                app:layout_constraintTop_toBottomOf="@id/tvProductInfo"
+                android:layout_margin="10dp"
+                android:text="제조 국가"
+                android:textColor="@color/gray9"
+                android:textSize="13dp"
+                android:lineSpacingExtra="6dp"
+                android:id="@+id/tvProductCountry"/>
+        <!--판매단위 설명 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/tvProductCountry"
+                app:layout_constraintLeft_toRightOf="@id/tvProductCountry"
+                android:layout_marginLeft="10dp"
+                tools:text="제조 국가"
+                android:id="@+id/tvCountry"/>
+        <!--제품 성분 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvProductCountry"
+                app:layout_constraintLeft_toLeftOf="@id/tvProductInfo"
+                android:layout_margin="10dp"
+                android:text="제품 성분"
+                android:textColor="@color/gray9"
+                android:textSize="13dp"
+                android:lineSpacingExtra="6dp"
+                android:id="@+id/tvProductIngredient"/>
+        <!--제품 성분 설명 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/tvProductIngredient"
+                app:layout_constraintLeft_toRightOf="@id/tvProductIngredient"
+                android:layout_marginStart="10dp"
+                tools:text="제품 성분"
+                android:id="@+id/tvIngredient" />
+        <!--제품 정보 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvProductIngredient"
+                app:layout_constraintLeft_toLeftOf="@id/tvProductInfo"
+                android:layout_margin="10dp"
+                android:text="제품 특징"
+                android:textColor="@color/gray9"
+                android:textSize="13dp"
+                android:lineSpacingExtra="6dp"
+                android:id="@+id/tvProductCharacteristic"/>
+        <!--제품 정보 설명 텍스트-->
+        <TextView
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/tvProductCharacteristic"
+                app:layout_constraintLeft_toRightOf="@id/tvProductCharacteristic"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginStart="10dp"
+                tools:text="제품 특징"
+                android:id="@+id/tvCharacteristic"/>
+        <!--구분선3-->
+        <View
+                android:layout_width="match_parent" android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tvCharacteristic"
+                android:layout_marginTop="8dp"
+                android:background="@color/gray0_5"
+                android:id="@+id/divider3"/>
+        <!--쿠팡 로고-->
+        <ImageView
+                android:layout_width="50dp" android:layout_height="0dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvBuy"
+                app:layout_constraintBottom_toBottomOf="@id/tvBuy"
+                android:layout_margin="8dp"
+                android:src="@drawable/coupang"
+                android:id="@+id/ivCoupang"/>
+        <!--쿠팡 코멘트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/divider3"
+                app:layout_constraintLeft_toRightOf="@id/ivCoupang"
+                android:gravity="left"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:text="배송비 무료! 지금 주문하면 새벽7시 도착!\n최저가에 바로 구매하러 가기!"
+                android:lineSpacingExtra="8dp"
+                android:id="@+id/tvBuy"/>
+        <!--구매하기 버튼-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvBuy"
+                app:layout_constraintBottom_toBottomOf="@id/tvBuy"
+                android:text="구매하기"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                android:layout_marginEnd="16dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:background="@drawable/buy_rect"
+                android:id="@+id/btnBuy"/>
+        <!--구분선4-->
+        <View
+                android:layout_width="match_parent" android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tvBuy"
+                android:layout_marginTop="8dp"
+                android:background="@color/gray0_5"
+                android:id="@+id/divider4"/>
+        <!--공유 버튼-->
+        <ImageView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/divider4"
+                app:layout_constraintLeft_toLeftOf="@id/ivCoupang"
+                app:layout_constraintRight_toRightOf="@id/ivCoupang"
+                android:layout_marginTop="8dp"
+                android:padding="8dp"
+                android:src="@drawable/ic_menu_share"
+                android:id="@+id/ivShare"/>
+        <!--공유 텍스트-->
+        <TextView
+                android:layout_width="0dp" android:layout_height="0dp"
+                app:layout_constraintLeft_toRightOf="@id/ivShare"
+                app:layout_constraintTop_toTopOf="@id/ivShare"
+                app:layout_constraintBottom_toBottomOf="@id/ivShare"
+                app:layout_constraintRight_toLeftOf="@id/btnShare"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="친구에게 링크 공유해주기!"
+                android:id="@+id/tvShare"/>
+        <!--구매하기 버튼-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvShare"
+                app:layout_constraintBottom_toBottomOf="@id/tvShare"
+                android:text="공유하기"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                android:layout_marginEnd="16dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:background="@drawable/buy_rect"
+                android:id="@+id/btnShare"/>
+        <!--구분선5-->
+        <View
+                android:layout_width="match_parent" android:layout_height="8dp"
+                app:layout_constraintTop_toBottomOf="@id/ivShare"
+                android:layout_marginTop="8dp"
+                android:background="@color/gray0_5"
+                android:id="@+id/divider5"/>
+        <!--리뷰 텍스트-->
+        <TextView
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/divider5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:text="@string/review"
+                android:id="@+id/tvReviewNum"/>
+        <!--리뷰 더보기 버튼-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvReviewNum"
+                app:layout_constraintBottom_toBottomOf="@id/tvReviewNum"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textSize="12dp"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/product_review_more"
+                android:id="@+id/tvReviewMore"/>
+        <!--리뷰 리스트(상위 3개)-->
+        <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvReviewNum"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:minHeight="100dp"
+                android:visibility="visible"
+                android:id="@+id/rvReview"/>
+        <com.victor.loading.rotate.RotateLoading
+                android:layout_width="80dp" android:layout_height="80dp"
+                app:layout_constraintTop_toTopOf="@id/layerUserComment"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:loading_width="5dp"
+                app:loading_color="@color/colorPrimary"
+                android:layout_centerInParent="true"
+                android:id="@+id/rotateLoading"/>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">킹콘</string>
+
+    <!--페이스북 앱 아이디-->
+    <string name="facebook_app_id">396577120920331</string>
+    <string name="fb_login_protocol_scheme">fb396577120920331</string>
+
+    <!--로그인 텍스트-->
+    <string name="unAuthBtn">비회원으로 시작</string>
+    <string name="facebookSignUpBtn">페이스북으로 가입 / 로그인</string>
+    <string name="emailSignUp">이메일로 가입</string>
+    <!--로그인 텍스트-->
+
+    <!--회원가입 텍스트-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="male">남성</string>
+    <string name="female">여성</string>
+    <string name="email_hint">이메일 (email@kingcon.com)</string>
+    <string name="name_hint">닉네임 (2자리 이상)</string>
+    <string name="email_hint2">이메일</string>
+    <string name="password_hint">비밀번호 (6자리 이상)</string>
+    <string name="password_hint2">비밀번호</string>
+    <string name="password_confirm_hint">비밀번호 확인</string>
+    <string name="name">이름</string>
+    <string name="signUp">회원가입</string>
+    <string name="infoSet">정보입력</string>
+    <string name="confirm">인증</string>
+    <string name="signUpSuccess">가입하기</string>
+    <string name="signIn">로그인</string>
+    <string name="ignore">다음에 하기</string>
+    <string name="sign_in_ing">로그인 중 입니다</string>
+    <string name="alreadySignUp">이미 회원가입했다면,
+        <u>로그인하기</u>
+    </string>
+    <string name="alreadyNonSignUp">아직 회원가입을 안했다면,
+        <u>회원가입하기</u>
+    </string>
+    <string name="forgotPassword">
+        <u>비밀번호 찾기</u>
+    </string>
+    <string name="alreadySignUpEmail">이미 가입된 이메일입니다</string>
+    <string name="passwordReset">비밀번호 찾기</string>
+    <string name="passwordResetMailSend">비밀번호 재설정메일이 발송됐습니다</string>
+    <string name="passwordResetMailNonSend">해당 이메일은 가입되지 않았습니다</string>
+    <!--회원가입 텍스트-->
+
+    <!--메인-->
+    <!--메뉴-->
+    <string name="title_home">홈</string>
+    <string name="title_dashboard">태그</string>
+    <string name="title_notifications">팁</string>
+    <string name="title_myPage">내 정보</string>
+    <!--메뉴-->
+
+    <string name="ratingComment1">평점</string>
+    <string name="ratingComment2">명)</string>
+    <string name="review">리뷰</string>
+    <string name="wishlist">위시리스트</string>
+    <string name="review_reg">리뷰남기기</string>
+    <string name="review_custom">리뷰 수정</string>
+    <string name="weight">리뷰남기기asdasd</string>
+    <string name="ratingInfo">별점 분포도</string>
+    <string name="rating">평가하기</string>
+    <string name="product_info">제품 정보</string>
+    <string name="product_info_more">자세히</string>
+    <string name="product_review_more">더보기</string>
+    <string name="rating_reflect">평가가 반영되었습니다!</string>
+    <string name="reviewReg">리뷰 등록</string>
+    <string name="custom">수정</string>
+    <string name="remove">삭제</string>
+    <string name="userListNum">평가 리스트</string>
+    <string name="wishListNum">위시 리스트</string>
+    <string name="review_list">리뷰</string>
+    <string name="ratingList">평가 리스트</string>
+    <string name="wishList">위시 리스트</string>
+    <string name="reviewList">리뷰 리스트</string>
+    <string name="emptyList">목록이 없습니다!</string>
+    <string name="sexLifeTip">성생활 팁</string>
+    <string name="searchTag">태그 검색</string>
+    <string name="searchProd">제품 검색</string>
+    <string name="searchResult">검색 결과</string>
+
+    <string name="firstUser">firstUser</string>
+    <string name="profileImage">프로필</string>
+    <string name="preferTag">선호 태그</string>
+    <string name="infoText1">리뷰작성을 위해 프로필을 입력해 주세요.</string>
+
+    <!--메인-->
+</resources>

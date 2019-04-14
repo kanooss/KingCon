@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <!--에디트텍스트 왼쪽 padding-->
+    <dimen name="edit_text_left_margin">10dp</dimen>
+    <!--에디트텍스트 왼쪽 padding-->
+    <dimen name="edit_text_right_margin">10dp</dimen>
+    <!--에디트텍스트 왼쪽 padding-->
+    <dimen name="edit_text_left_padding">10dp</dimen>
+    <!--가이드 라벨 왼쪽 padding (에디트텍스트 가이드 라벨)-->
+    <dimen name="guid_label_left_padding">20dp</dimen>
+    <!--가이드 라벨 위쪽 마이너스 마진 (에디트텍스트 가이드 라벨)-->
+    <dimen name="guid_label_top_margin">-4dp</dimen>
+    <!--가이드 라벨 텍스트 사이즈 (에디트텍스트 가이드 라벨)-->
+    <dimen name="guid_label_text_size">10dp</dimen>
+    <!--에디트텍스트 아래쪽 margin-->
+    <dimen name="edit_text_bottom_margin">8dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">200dp</dimen>
+    <dimen name="action_bar_text_size">18dp</dimen>
+    <!--태그 검색창 태그 마진-->
+    <dimen name="tagListMarginHor">4dp</dimen>
+    <dimen name="tagListMarginVer">4dp</dimen>
+
+    <dimen name="emptyViewTextSize">15dp</dimen>
+    <dimen name="elevationDP">2dp</dimen>
+</resources>

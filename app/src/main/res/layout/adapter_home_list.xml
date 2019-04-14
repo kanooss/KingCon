@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools"
+        app:cardCornerRadius="10dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        app:cardElevation="1dp">
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:background="@drawable/product_rect"
+            android:padding="10dp"
+            android:id="@+id/productContainer">
+        <!--상품 이미지-->
+        <ImageView
+                android:layout_width="150dp" android:layout_height="150dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/gray0_5"
+                android:padding="1dp"
+                android:id="@+id/ivProduct"/>
+        <!--상품명-->
+        <TextView
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/ivProduct"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="오카모토 0.02 하이드로 폴리우레탄"
+                android:textSize="13dp"
+                android:id="@+id/tvProductName"/>
+        <!--정가(아직 x)-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/tvProductName"
+                android:visibility="gone"
+                android:textSize="10dp"
+                android:hint="정가"
+                android:textColor="@color/gray5"
+                android:layout_marginEnd="5dp"
+                android:id="@+id/tvProductPrice"/>
+        <!--판매사-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvProductName"
+                app:layout_constraintLeft_toRightOf="@id/ivProduct"
+                android:textSize="10dp"
+                android:text="판매사"
+                android:textColor="@color/gray5"
+                android:layout_marginStart="5dp"
+                android:id="@+id/tvProductCompany"/>
+        <!--평점 별-->
+        <RatingBar
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintLeft_toLeftOf="@id/tvProductName"
+                app:layout_constraintTop_toBottomOf="@id/tvProductCompany"
+                app:layout_constraintBottom_toTopOf="@id/ivRatingNum"
+                android:rating="1"
+                android:numStars="1"
+                android:progressTint="@color/colorPrimary"
+                style="?android:attr/ratingBarStyleSmall"
+                android:id="@+id/ratingBar"/>
+        <!--평점 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+                app:layout_constraintTop_toTopOf="@id/ratingBar"
+                app:layout_constraintLeft_toRightOf="@id/ratingBar"
+                android:layout_marginStart="5dp"
+                android:textSize="12dp"
+                android:text="0.0"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/tvProductPoint"/>
+        <!--평가자 수 이미지-->
+        <ImageView
+                android:layout_width="10dp" android:layout_height="10dp"
+                app:layout_constraintTop_toBottomOf="@id/ratingBar"
+                app:layout_constraintBottom_toTopOf="@id/ivWishNum"
+                app:layout_constraintLeft_toLeftOf="@id/ratingBar"
+                app:layout_constraintRight_toRightOf="@id/ratingBar"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_rating_ok"
+                android:id="@+id/ivRatingNum"/>
+        <!--평가자 수 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/ivRatingNum"
+                app:layout_constraintBottom_toBottomOf="@id/ivRatingNum"
+                app:layout_constraintLeft_toRightOf="@id/ivRatingNum"
+                android:layout_margin="4dp"
+                android:textSize="10dp"
+                android:hint="100k"
+                android:id="@+id/tvRatingNum"/>
+        <!--위시 수 이미지-->
+        <ImageView
+                android:layout_width="10dp" android:layout_height="10dp"
+                app:layout_constraintLeft_toLeftOf="@id/ivRatingNum"
+                app:layout_constraintRight_toRightOf="@id/ivRatingNum"
+                app:layout_constraintTop_toBottomOf="@id/ivRatingNum"
+                app:layout_constraintBottom_toTopOf="@id/ivReviewNum"
+                android:layout_margin="4dp"
+                android:src="@drawable/ic_wish_ok"
+                android:id="@+id/ivWishNum"/>
+        <!--위시 수 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/ivWishNum"
+                app:layout_constraintTop_toTopOf="@id/ivWishNum"
+                app:layout_constraintBottom_toBottomOf="@id/ivWishNum"
+                android:layout_margin="4dp"
+                android:textSize="10dp"
+                android:hint="100k"
+                android:id="@+id/tvWishNum"/>
+        <!--리뷰 수 이미지-->
+        <ImageView
+                android:layout_width="10dp" android:layout_height="10dp"
+                app:layout_constraintLeft_toLeftOf="@id/ivRatingNum"
+                app:layout_constraintRight_toRightOf="@id/ivRatingNum"
+                app:layout_constraintTop_toBottomOf="@id/ivWishNum"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_review_ok"
+                android:id="@+id/ivReviewNum"/>
+        <!--리뷰 수 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintLeft_toRightOf="@id/ivReviewNum"
+                app:layout_constraintTop_toTopOf="@id/ivReviewNum"
+                app:layout_constraintBottom_toBottomOf="@id/ivReviewNum"
+                android:layout_margin="4dp"
+                android:textSize="10dp"
+                android:hint="100k"
+                android:id="@+id/tvReviewNum"/>
+        <!--구분선-->
+        <View
+                android:layout_width="match_parent" android:layout_height="1dp"
+                app:layout_constraintTop_toBottomOf="@id/rvTagList"
+                app:layout_constraintBottom_toTopOf="@id/tvDetail"
+                android:layout_marginBottom="8dp"
+                android:background="@color/gray0_5"
+                android:id="@+id/divider1_1"/>
+        <!--태그 리스트-->
+        <android.support.v7.widget.RecyclerView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/divider1_1"
+                app:layout_constraintTop_toBottomOf="@id/ivProduct"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:listitem="@layout/adapter_tag_list"
+                tools:layout_height="20dp"
+                android:overScrollMode="never"
+                android:gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/rvTagList">
+        </android.support.v7.widget.RecyclerView>
+        <!--자세히 보기 텍스트-->
+        <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/divider1_1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textSize="11dp"
+                android:layout_marginBottom="3dp"
+                android:gravity="right"
+                android:text="제품 자세히"
+                android:id="@+id/tvDetail"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

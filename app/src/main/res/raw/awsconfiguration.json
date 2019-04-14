@@ -1,0 +1,55 @@
+{
+  "UserAgent": "MobileHub/1.0",
+  "Version": "1.0",
+  "CredentialsProvider": {
+    "CognitoIdentity": {
+      "Default": {
+        "PoolId": "ap-northeast-2:dda59dc5-e5cc-4be7-801c-45fbdfab95bc",
+        "Region": "ap-northeast-2"
+      }
+    }
+  },
+  "IdentityManager": {
+    "Default": {}
+  },
+  "CognitoUserPool": {
+    "Default": {
+      "PoolId": "ap-northeast-2_zGizCtBpA",
+      "AppClientId": "628f1fqpjt8ql9ceeidtu7pbdk",
+      "AppClientSecret": "185csd36mkl6g903e17cu39op7dlksuj707524al1k5f4rj5lg4k",
+      "Region": "ap-northeast-2"
+    }
+  },
+  "S3TransferUtility": {
+    "Default": {
+      "Bucket": "kingcon-userfiles-mobilehub-140270308",
+      "Region": "ap-northeast-2"
+    }
+  },
+  "DynamoDBObjectMapper": {
+    "Default": {
+      "Region": "ap-northeast-2"
+    }
+  },
+  "PinpointAnalytics": {
+    "Default": {
+      "AppId": "5986c67401394c0e80d226252a372fac",
+      "Region": "us-east-1"
+    }
+  },
+  "PinpointTargeting": {
+    "Default": {
+      "Region": "us-east-1"
+    }
+  },
+  "UserFileManager": {
+    "Default": {
+      "Bucket": "kingcon-userfiles-mobilehub-140270308",
+      "Region": "ap-northeast-2"
+    }
+  },
+  "FacebookSignIn": {
+    "AppId": "396577120920331",
+    "Permissions": "public_profile"
+  }
+}
