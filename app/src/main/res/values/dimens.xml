@@ -25,6 +25,10 @@
     <dimen name="tagListMarginHor">4dp</dimen>
     <dimen name="tagListMarginVer">4dp</dimen>
 
+    <!--프로그래스바 사이즈-->
+    <dimen name="progressSize">50dp</dimen>
+    <dimen name="progressWidth">3dp</dimen>
+
     <dimen name="emptyViewTextSize">15dp</dimen>
     <dimen name="elevationDP">2dp</dimen>
 </resources>

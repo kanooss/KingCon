@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Main.ViewMain"
+        tools:context=".main.ViewMain"
         android:id="@+id/containerMain">
     <Button
             android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -15,8 +15,8 @@
             android:text="로그아웃"
             android:id="@+id/btnTestLogout"/>
     <Button
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:layout_width="50dp" android:layout_height="50dp"
+            android:visibility="visible"
             android:id="@+id/textbtn"/>
     <!--홈화면-->
     <LinearLayout
@@ -59,4 +59,4 @@
             app:itemTextColor="@color/bottom_nav_btn"
             app:menu="@menu/navigation"
             android:id="@+id/bottomNavigation"/>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

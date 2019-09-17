@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,7 +14,7 @@
             style="@style/FacebookLoginButton"
             android:id="@+id/facebookSignIn"/>
     <!--비회원 시작 버튼-->
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent" android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/btnFacebookSignIn"
             style="@style/ButtonLinearStyle"
@@ -37,9 +37,9 @@
                 android:textColor="@color/black"
                 android:text="@string/unAuthBtn"
                 android:layout_marginEnd="32dp"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <!--페북 로그인/가입 버튼-->
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent" android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/btnGoSignUp"
             style="@style/ButtonLinearStyle"
@@ -62,9 +62,9 @@
                 android:text="@string/facebookSignUpBtn"
                 android:textColor="@color/white"
                 android:layout_marginEnd="32dp"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <!--이메일로 가입 버튼-->
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent" android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/btnSignIn"
             style="@style/ButtonLinearStyle"
@@ -88,7 +88,7 @@
                 android:textColor="@color/white"
                 android:layout_marginEnd="32dp"
                 android:text="@string/emailSignUp"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <!--회원가입 텍스트 버튼-->
     <TextView
             android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -102,13 +102,13 @@
             android:id="@+id/btnSignIn"/>
 
     <com.victor.loading.rotate.RotateLoading
-            android:layout_width="80dp" android:layout_height="80dp"
+            android:layout_width="@dimen/progressSize" android:layout_height="@dimen/progressSize"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:loading_width="5dp"
+            app:loading_width="@dimen/progressWidth"
             app:loading_color="@color/colorProgress"
             android:layout_centerInParent="true"
             android:id="@+id/progress"/>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

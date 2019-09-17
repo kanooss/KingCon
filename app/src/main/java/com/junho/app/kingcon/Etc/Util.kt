@@ -6,15 +6,15 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -35,24 +35,31 @@ import com.junho.app.kingcon.Etc.StringData.MY
 import com.junho.app.kingcon.Etc.StringData.TAG
 import com.junho.app.kingcon.Item.ReviewData
 import com.junho.app.kingcon.Item.UserData
-import com.junho.app.kingcon.Main.ViewMain
+import com.junho.app.kingcon.main.ViewMain
 import com.junho.app.kingcon.R
 import com.nguyenhoanglam.imagepicker.model.Image
 import com.nguyenhoanglam.imagepicker.ui.imagepicker.ImagePicker
 import com.victor.loading.rotate.RotateLoading
 import kotlinx.android.synthetic.main.activity_view_main.*
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.util.*
 
 object Util {
-    fun progressVisible(visible: Boolean, progress: RotateLoading, view: FragmentActivity?){
+    fun progressVisible(visible: Boolean, progress: View, view: androidx.fragment.app.FragmentActivity?){
         if(view != null)
             if(visible) {
                 view.window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                progress.start()
+                if(progress is RotateLoading)
+                    progress.start()
+                progress.visibility = VISIBLE
             }
             else {
-                progress.stop()
+                if(progress is RotateLoading)
+                    progress.stop()
+                progress.visibility = GONE
                 view.window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             }
     }
@@ -199,22 +206,23 @@ object Util {
         if(TrueTime.isInitialized()) TrueTime.now()
         else Date()
     @JvmStatic
-    fun fragmentChanger(activity:Activity,fragment : android.support.v4.app.Fragment){
+    fun fragmentChanger(activity:Activity,fragment : Fragment){
         if(fragment.isAdded){
             (activity as ViewMain).supportFragmentManager.beginTransaction().hide(activity.currentHomeFragment!!).show(fragment).commit()
             activity.currentHomeFragment = fragment
         }
     }
     @JvmStatic
-    fun fragmentChanger(activity:Activity, fragment : android.support.v4.app.Fragment, container : String){
+    fun fragmentChanger(activity:Activity, fragment : Fragment, container : String){
         when(container){
             HOME->{
                 (activity as ViewMain).supportFragmentManager.beginTransaction()
                     .hide(activity.currentHomeFragment!!).add(R.id.bottomNavPageContainerHome,fragment).commit()
                 if(fragment == activity.reviewDetailFragment)
-                    activity.bottomNavigation.visibility = View.GONE
+                    activity.bottomNavigation.visibility = GONE
                 activity.beforeSearchResultFragment = activity.currentHomeFragment == activity.searchResultFragment
                 activity.beforeProductInfoFragment = activity.currentHomeFragment == activity.productInfoFragment
+                activity.beforeReviewMoreFragment = activity.currentHomeFragment == activity.reviewMoreFragment
                 activity.currentHomeFragment = fragment
             }
             TAG->{
@@ -234,4 +242,70 @@ object Util {
             }
         }
     }
+}
+
+open class MyLog {
+    companion object {
+        var time = 0L
+
+        fun i(s: Any) = Log.i("testLogI", Thread.currentThread().name + " | " + s)
+
+        fun e(s: Any) = Log.e("testLogE", Thread.currentThread().name + " | " + s)
+
+        fun startTime() {
+            time = System.currentTimeMillis()
+        }
+
+        fun endTime() {
+            Log.i("testEndTime", Thread.currentThread().name+" - time : ${System.currentTimeMillis() - time}")
+        }
+    }
+}
+
+
+object OkHttpHelper {
+    private val client = OkHttpClient()
+    var ERROR = "ERROR"
+
+    @Throws(IOException::class)
+    operator fun get(url: String): String {
+        val request = Request.Builder()
+            .url(url)
+            .header("x-api-key", "h1fy2M8sJn4xccEbVnbYnc1QsIQb21e6eZvMuxkd")
+            .build()
+        try {
+            val res = client.newCall(request).execute()
+            return res.body?.string().toString()
+        } catch (e: IOException) {
+            println(e.message)
+            throw e
+        }
+
+    }
+
+    @Throws(IOException::class)
+    fun getT(url: String): String {
+        val request = Request.Builder()
+            .url(url)
+            .build()
+        try {
+            val res = client.newCall(request).execute()
+            return res.body.toString()
+        } catch (e: IOException) {
+            println(e.message)
+            throw e
+        }
+
+    }
+
+    @Throws(IOException::class)
+    fun getWithLog(url: String): String {
+        println("OkHttp call URL = $url")
+        return get(url)
+    }
+}
+
+fun RecyclerView.listScrolled(flag: Boolean){
+    if(!flag) setOnTouchListener { _, _ -> true }
+    else setOnTouchListener(null)
 }

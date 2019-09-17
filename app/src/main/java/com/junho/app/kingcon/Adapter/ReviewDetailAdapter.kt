@@ -2,7 +2,7 @@ package com.junho.app.kingcon.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.View
@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import com.bumptech.glide.Glide
 import com.junho.app.kingcon.Etc.CallBack.CallbackAdapter
+import com.junho.app.kingcon.Etc.MyLog
 import com.junho.app.kingcon.Etc.StringData
 import com.junho.app.kingcon.Etc.User
 import com.junho.app.kingcon.Etc.Util
@@ -70,10 +71,7 @@ class ReviewDetailAdapter(
             view.btnCommentLike.setOnClickListener { callbackAdapter.onCommentLikeClick(comment, position) }
             view.tvLikeNum.setOnClickListener { view.btnCommentLike.performClick()}
             Glide.with(view)
-                .load(
-                    if(comment.isLike) R.drawable.ic_like_ok
-                    else R.drawable.ic_like
-                )
+                .load(if(comment.isLike) R.drawable.ic_like_ok else R.drawable.ic_like)
                 .into(view.btnCommentLike)
             view.tvLikeNum.text = comment.like.toString()   //좋아요 수
             view.tvDate.text = Util.regTime(comment.date)   //입력 날짜
@@ -146,6 +144,8 @@ class ReviewDetailAdapter(
             //좋아요 클릭
             view.ivReviewBtnLike.setOnClickListener { callbackAdapter.onLikeClick(reviewData, position) }
             view.tvReviewLikeNum.setOnClickListener { callbackAdapter.onLikeClick(reviewData, position) }
+            val a = View.OnClickListener {
+            }
         }
     }
 }

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             tools:context=".Main.Search.ViewSearchFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
     <!--액션바-->
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent" android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:elevation="0dp"
             app:elevation="0dp"
             android:theme="@style/AppTheme.AppBarOverlay"
             android:id="@+id/appbar">
-        <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent" android:layout_height="55dp"
+        <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent" android:layout_height="45dp"
                 android:elevation="0dp"
                 android:background="@color/white"
                 app:layout_scrollFlags="scroll|enterAlways"
@@ -33,15 +33,8 @@
                     android:text="제품 검색"
                     android:layout_gravity="center"
                     android:gravity="center"/>
-            <!--리뷰 작성 완료-->
-            <ImageView
-                    android:layout_width="25dp" android:layout_height="25dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_gravity="right"
-                    android:background="@drawable/ic_search"
-                    android:id="@+id/btnReviewSuccess"/>
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
     <!--검색창 백그라운드-->
     <View
             android:layout_width="match_parent" android:layout_height="60dp"
@@ -73,7 +66,7 @@
             app:layout_constraintTop_toTopOf="@id/background1"
             app:layout_constraintBottom_toBottomOf="@id/background1"
             app:layout_constraintLeft_toLeftOf="@id/etSearchProd"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
             android:background="@drawable/ic_search"
             android:id="@+id/ivSearch"/>
@@ -82,7 +75,7 @@
             app:layout_constraintTop_toBottomOf="@id/background1"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/scrollView">
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent" android:layout_height="wrap_content">
             <TextView
                     android:layout_width="0dp" android:layout_height="wrap_content"
@@ -94,7 +87,7 @@
                     android:textSize="16dp"
                     android:text="최근 검색"
                     android:id="@+id/tvSearchList"/>
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="0dp" android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/tvSearchList"
                     app:layout_constraintLeft_toLeftOf="@id/tvSearchList"
@@ -112,13 +105,13 @@
                     android:textSize="16dp"
                     android:text="인기 검색 제품"
                     android:id="@+id/tvPopularList"/>
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                     app:layout_constraintTop_toBottomOf="@id/tvPopularList"
                     app:layout_constraintLeft_toLeftOf="@id/tvSearchList"
                     android:layout_marginTop="10dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/rvPopularList"/>
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.junho.app.kingcon.Item
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*
+import com.google.gson.annotations.SerializedName
 import com.junho.app.kingcon.Etc.User
 import java.io.Serializable
 
@@ -16,90 +17,171 @@ import java.io.Serializable
  * UserWishData(유저 위시 리스트 데이터) -  위시리스트
  * UserReviewData(유저 리뷰 리스트 데이터) - 리뷰리스트
  */
-@DynamoDBTable(tableName = "kingcon-mobilehub-140270308-User")
-data class UserData(@get:DynamoDBHashKey(attributeName = "Id") var id: String,
-                    @get:DynamoDBAttribute(attributeName = "Name")  var name: String,
-                    @get:DynamoDBNativeBoolean var picture: Boolean = false,
-                    @get:DynamoDBAttribute(attributeName = "Age") var age: Long = 0,
-                    @get:DynamoDBNativeBoolean var gender: Boolean = false,
-                    @get:DynamoDBAttribute(attributeName = "Provider")  var provider: String = "",
-                    @get:DynamoDBAttribute(attributeName = "PreferTag") var preferTag: HashMap<String, Int> = hashMapOf(),
-                    @get:DynamoDBAttribute(attributeName = "Rating") var rating: Int = 0,
-                    @get:DynamoDBAttribute(attributeName = "Wish") var wish: Int = 0,
-                    @get:DynamoDBAttribute(attributeName = "Review") var review: Int = 0,
-                    @get:DynamoDBIgnore var imageByte: ByteArray? = null): Serializable{
 
-    constructor(user: User):this(user.id,user.name,user.picture,user.age,user.gender,user.provider,user.preferTag,user.rating,user.wish,user.review)
-    constructor(user: UserProfileData):this(user.id, user.name, user.picture, user.age, user.gender, user.provider, user.preferTag)
-    constructor(id:String, name: String, provider: String):this(id, name, false, 0, false, provider, hashMapOf())
-    constructor(id: String, name: String, provider: String, age: Long, gender: Boolean):this(id, name, false, age, gender, provider, hashMapOf())
-    constructor():this("","",false,0,false,"", hashMapOf(), 0,0,0)
+@DynamoDBTable(tableName = "kingcon-mobilehub-140270308-User")
+data class UserData(
+    @SerializedName("Id") @get:DynamoDBHashKey(attributeName = "Id") var id: String,
+    @SerializedName("Name") @get:DynamoDBAttribute(attributeName = "Name") var name: String,
+    @SerializedName("picture") @get:DynamoDBNativeBoolean var picture: Boolean = false,
+    @SerializedName("Age") @get:DynamoDBAttribute(attributeName = "Age") var age: Long = 0,
+    @SerializedName("gender") @get:DynamoDBNativeBoolean var gender: Boolean = false,
+    @SerializedName("Provider") @get:DynamoDBAttribute(attributeName = "Provider") var provider: String = "",
+    @SerializedName("PreferTag") @get:DynamoDBAttribute(attributeName = "PreferTag") var preferTag: HashMap<String, Int> = hashMapOf(),
+    @SerializedName("Rating") @get:DynamoDBAttribute(attributeName = "Rating") var rating: Int = 0,
+    @SerializedName("Wish") @get:DynamoDBAttribute(attributeName = "Wish") var wish: Int = 0,
+    @SerializedName("Review") @get:DynamoDBAttribute(attributeName = "Review") var review: Int = 0,
+    @get:DynamoDBIgnore var imageByte: ByteArray? = null
+) : Serializable {
+    constructor(user: User) : this(
+        user.id,
+        user.name,
+        user.picture,
+        user.age,
+        user.gender,
+        user.provider,
+        user.preferTag,
+        user.rating,
+        user.wish,
+        user.review
+    )
+
+    constructor(user: UserProfileData) : this(
+        user.id,
+        user.name,
+        user.picture,
+        user.age,
+        user.gender,
+        user.provider,
+        user.preferTag
+    )
+
+    constructor(id: String, name: String, provider: String) : this(
+        id,
+        name,
+        false,
+        0,
+        false,
+        provider,
+        hashMapOf()
+    )
+
+    constructor(id: String, name: String, provider: String, age: Long, gender: Boolean) : this(
+        id,
+        name,
+        false,
+        age,
+        gender,
+        provider,
+        hashMapOf()
+    )
+
+    constructor() : this("", "", false, 0, false, "", hashMapOf(), 0, 0, 0)
 
     //유저 기본프로필 세팅
-    fun setProfile(profile: UserProfileData){
+    fun setProfile(profile: UserProfileData) {
         id = profile.id
         name = profile.name
         picture = profile.picture
         age = profile.age
         gender = profile.gender
     }
-    fun setProvider(providerData: UserProviderData){
+
+    fun setProvider(providerData: UserProviderData) {
         provider = providerData.provider
     }
-    fun setPrefer(prefer: UserPreferData){
+
+    fun setPrefer(prefer: UserPreferData) {
         preferTag.clear()
         preferTag.putAll(prefer.preferTag)
     }
+
     //활동 세팅
-    fun setAct(act: UserActData){
+    fun setAct(act: UserActData) {
         rating = act.rating
         wish = act.wish
         review = act.review
     }
 }
+
 //유저 기본 데이터
 @DynamoDBTable(tableName = "kingcon-mobilehub-140270308-User")
-data class UserProfileData(@get:DynamoDBHashKey(attributeName = "Id") var id: String = "",
-                           @get:DynamoDBAttribute(attributeName = "Name")  var name: String = "",
-                           @get:DynamoDBNativeBoolean var picture: Boolean = false,
-                           @get:DynamoDBAttribute(attributeName = "Age")  var age: Long = 0,
-                           @get:DynamoDBNativeBoolean var gender: Boolean = false,
-                           @get:DynamoDBAttribute(attributeName = "Provider")  var provider: String = "",
-                           @get:DynamoDBAttribute(attributeName = "PreferTag")  var preferTag: HashMap<String, Int> = hashMapOf()): Serializable{
-    constructor(user: User):this(user.id,user.name,user.picture,user.age,user.gender,user.provider)
-    constructor():this("", "", false, 0, false, "")
+data class UserProfileData(
+    @get:DynamoDBHashKey(attributeName = "Id") var id: String = "",
+    @get:DynamoDBAttribute(attributeName = "Name") var name: String = "",
+    @get:DynamoDBNativeBoolean var picture: Boolean = false,
+    @get:DynamoDBAttribute(attributeName = "Age") var age: Long = 0,
+    @get:DynamoDBNativeBoolean var gender: Boolean = false,
+    @get:DynamoDBAttribute(attributeName = "Provider") var provider: String = "",
+    @get:DynamoDBAttribute(attributeName = "PreferTag") var preferTag: HashMap<String, Int> = hashMapOf()
+) : Serializable {
+    constructor(user: User) : this(
+        user.id,
+        user.name,
+        user.picture,
+        user.age,
+        user.gender,
+        user.provider
+    )
+    constructor(user: UserData): this(
+        user.id,
+        user.name,
+        user.picture,
+        user.age,
+        user.gender,
+        user.provider
+    )
+
+    constructor() : this("", "", false, 0, false, "")
 }
+
 //유저 선호 태그
 @DynamoDBTable(tableName = "kingcon-mobilehub-140270308-User")
-data class UserPreferData(@get:DynamoDBHashKey(attributeName = "Id") var id: String = "",
-                          @get:DynamoDBAttribute(attributeName = "PreferTag") var preferTag: HashMap<String, Int>): Serializable{
-    constructor():this("", hashMapOf())
+data class UserPreferData(
+    @get:DynamoDBHashKey(attributeName = "Id") var id: String = "",
+    @get:DynamoDBAttribute(attributeName = "PreferTag") var preferTag: HashMap<String, Int>
+) : Serializable {
+    constructor() : this("", hashMapOf())
 }
+
 //유저 자격 공급자
 @DynamoDBTable(tableName = "kingcon-mobilehub-140270308-User")
-data class UserProviderData(@get:DynamoDBHashKey(attributeName = "Id") var id: String = "",
-                            @get:DynamoDBAttribute(attributeName = "Provider") var provider: String = ""): Serializable{
-    constructor():this("", "")
+data class UserProviderData(
+    @get:DynamoDBHashKey(attributeName = "Id") var id: String = "",
+    @get:DynamoDBAttribute(attributeName = "Provider") var provider: String = ""
+) : Serializable {
+    constructor() : this("", "")
 }
+
 @DynamoDBTable(tableName = "kingcon-mobilehub-140270308-User")
-data class UserActData(@get:DynamoDBHashKey(attributeName = "Id") var id: String,
-                       @get:DynamoDBAttribute(attributeName = "Rating") var rating: Int,
-                       @get:DynamoDBAttribute(attributeName = "Wish") var wish: Int,
-                       @get:DynamoDBAttribute(attributeName = "Review") var review: Int): Serializable{
-    constructor():this("", 0, 0, 0)
+data class UserActData(
+    @get:DynamoDBHashKey(attributeName = "Id") var id: String,
+    @get:DynamoDBAttribute(attributeName = "Rating") var rating: Int,
+    @get:DynamoDBAttribute(attributeName = "Wish") var wish: Int,
+    @get:DynamoDBAttribute(attributeName = "Review") var review: Int
+) : Serializable {
+    constructor() : this("", 0, 0, 0)
 }
+
 @DynamoDBTable(tableName = "kingcon-mobilehub-140270308-User")
-data class UserRatingData(@get:DynamoDBHashKey(attributeName = "Id") var id: String,
-                          @get:DynamoDBAttribute(attributeName = "RatingList") var ratingList: ArrayList<String>): Serializable{
-    constructor():this("", arrayListOf<String>())
+data class UserRatingData(
+    @get:DynamoDBHashKey(attributeName = "Id") var id: String,
+    @get:DynamoDBAttribute(attributeName = "RatingList") var ratingList: ArrayList<String>
+) : Serializable {
+    constructor() : this("", arrayListOf<String>())
 }
+
 @DynamoDBTable(tableName = "kingcon-mobilehub-140270308-User")
-data class UserWishData(@get:DynamoDBHashKey(attributeName = "Id") var id: String,
-                        @get:DynamoDBAttribute(attributeName = "WishList") var wishList: ArrayList<String>): Serializable{
-    constructor():this("", arrayListOf<String>())
+data class UserWishData(
+    @get:DynamoDBHashKey(attributeName = "Id") var id: String,
+    @get:DynamoDBAttribute(attributeName = "WishList") var wishList: ArrayList<String>
+) : Serializable {
+    constructor() : this("", arrayListOf<String>())
 }
+
 @DynamoDBTable(tableName = "kingcon-mobilehub-140270308-User")
-data class UserReviewData(@get:DynamoDBHashKey(attributeName = "Id") var id: String,
-                          @get:DynamoDBAttribute(attributeName = "ReviewList") var reviewList: ArrayList<String>): Serializable{
-    constructor():this("", arrayListOf<String>())
+data class UserReviewData(
+    @get:DynamoDBHashKey(attributeName = "Id") var id: String,
+    @get:DynamoDBAttribute(attributeName = "ReviewList") var reviewList: ArrayList<String>
+) : Serializable {
+    constructor() : this("", arrayListOf<String>())
 }

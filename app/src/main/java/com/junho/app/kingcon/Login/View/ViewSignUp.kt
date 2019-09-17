@@ -2,9 +2,9 @@ package com.junho.app.kingcon.Login.View
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import com.amazonaws.mobile.client.AWSMobileClient
 import com.amazonaws.mobile.client.Callback
@@ -49,16 +49,20 @@ class ViewSignUp : AppCompatActivity() {
             Snackbar.make(window.decorView.rootView, "이메일 형식이 잘못되었습니다.", Snackbar.LENGTH_SHORT).show()
             false
         } else if(etName.text.toString().length<2) {
-            Snackbar.make(window.decorView.rootView,"이름 길이가 짧습니다.",Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(window.decorView.rootView,"이름 길이가 짧습니다.",
+                Snackbar.LENGTH_SHORT).show()
             false
         } else if(etPass.text.toString().length<6){
-            Snackbar.make(window.decorView.rootView,"비밀번호 길이가 짧습니다. (6자 이상)",Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(window.decorView.rootView,"비밀번호 길이가 짧습니다. (6자 이상)",
+                Snackbar.LENGTH_SHORT).show()
             false
         } else if(etPass.text.toString() != etPassRe.text.toString()) {
-            Snackbar.make(window.decorView.rootView,"비밀번호가 다릅니다.",Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(window.decorView.rootView,"비밀번호가 다릅니다.",
+                Snackbar.LENGTH_SHORT).show()
             false
         } else if(!cbSignUp.isChecked) {
-            Snackbar.make(window.decorView.rootView,"약관 동의가 필요합니다.",Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(window.decorView.rootView,"약관 동의가 필요합니다.",
+                Snackbar.LENGTH_SHORT).show()
             false
         }else true
     }

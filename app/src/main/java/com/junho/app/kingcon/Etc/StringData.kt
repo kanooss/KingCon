@@ -10,7 +10,15 @@ object StringData {
     const val PRODUCT_INDEX = "type-index"
     const val REVIEW_TABLE = "Review"
     const val REVIEW_INDEX_LIKE = "Id-Like-index"
+    const val REVIEW_INDEX_DATE = "Id-Date-index"
     const val REVIEW_INDEX_POINT = "Id-Point-index"
+    //retrofi type
+    const val PRODUCT_API_KEY = "53Og9qtVhj7tbcEnYvlv02CYrgAB3ZC55x8B8YmX"
+    const val USER_API_KEY = "Qp19GTRwQf62zg83JxPOh8hUcJGhRIfM6WvNWoHg"
+    const val REVIEW_API_KEY = "53Og9qtVhj7tbcEnYvlv02CYrgAB3ZC55x8B8YmX"
+    const val PRODUCT_TYPE = "kingCong"
+    const val USER_TYPE = "kingCon_User"
+    const val REVIEW_TYPE = "kingCon_Review"
     //제품 타입
     const val CONDOM_TYPE = "Condom"
     const val GEL_TYPE = "Gel"
@@ -18,13 +26,33 @@ object StringData {
     //제품 아이디 범위
     const val CONDOM_MAX_NUM = 4
     //제품 초기 가져올 개수
-    const val PRODUCT_INIT_NUM = 3
+    const val PRODUCT_INIT_NUM = 4
+    //리뷰 리드 수
+    const val REVIEW_READ_NUM = 8
 
     fun AWS_S3_PRODUTC_PICTURE(path: String) =
         "https://s3.ap-northeast-2.amazonaws.com/kingcon-userfiles-mobilehub-140270308/product/$path.jpg"
     fun AWS_S3_USER_PICTURE(path: String) =
         "https://s3.ap-northeast-2.amazonaws.com/kingcon-userfiles-mobilehub-140270308/user/$path.jpg"
 
+    //api section
+    ////product
+    const val SECTION_PRODUCT_SERCH= "section_product_serch"
+    const val SECTION_PRODUCT_INFO= "section_product_info"
+    const val SECTION_PRODUCT_GRAPH= "section_product_graph"
+    ////review
+    const val SECTION_MY_REVIEW = "section_my_review"
+    const val SECTION_REVIEW_LIKE = "section_review_like"
+    const val SECTION_REVIEW_BEST = "section_review_best"
+    const val SECTION_REVIEW_COMMENT = "section_review_comment"
+    const val SECTION_REVIEW_COMMENT_LIKE = "section_review_comment_like"
+    const val SECTION_REVIEW_MORE = "section_review_more"
+    //////review like section
+    const val MY_REVIEW = "my_review"
+    const val BEST_REVIEW = "best_review"
+    const val MORE_REVIEW = "more_review"
+    ////user
+    const val SECTION_USER_DATA = "section_user_data"
     //디비 항목 이름
     //제품 테이블
     const val DB_TYPE = "type"
@@ -60,8 +88,8 @@ object StringData {
     const val DB_USER_WISHLIST = "WishList"
     //리뷰 테이블
     const val DB_REVIEW_ID = "Id"
-    const val DB_REVIEW_DATE = "Date"
     const val DB_REVIEW_USER_ID = "UserId"
+    const val DB_REVIEW_DATE = "Date"
     const val DB_REVIEW_POINT = "Point"
     const val DB_REVIEW_WISH = "Wish"
     const val DB_REVIEW_CONTENT = "Content"

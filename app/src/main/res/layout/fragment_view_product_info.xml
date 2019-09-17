@@ -3,8 +3,8 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-            tools:context=".Main.Product.View.ViewProductInfoFragment">
-    <android.support.constraint.ConstraintLayout
+            tools:context=".main.Product.View.ViewProductInfoFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent" android:layout_height="wrap_content">
         <!--배경 이미지-->
         <ImageView
@@ -56,7 +56,7 @@
                 android:gravity="center"
                 android:id="@+id/tvProductCompany"/>
         <!--해당 태그 리스-->
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tvProductCompany"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -209,7 +209,7 @@
                     android:paddingBottom="8dp"
                     android:layout_margin="5dp"
                     android:background="@color/gray1"/>
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent" android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -263,7 +263,7 @@
                         android:gravity="right"
                         android:text="@string/custom"
                         android:id="@+id/tvReviewCustom" />
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.github.aakira.expandablelayout.ExpandableLinearLayout>
         <!--구분선-->
         <View
@@ -521,7 +521,7 @@
                 android:text="@string/product_review_more"
                 android:id="@+id/tvReviewMore"/>
         <!--리뷰 리스트(상위 3개)-->
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/tvReviewNum"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -530,14 +530,15 @@
                 android:minHeight="100dp"
                 android:visibility="visible"
                 android:id="@+id/rvReview"/>
+
         <com.victor.loading.rotate.RotateLoading
-                android:layout_width="80dp" android:layout_height="80dp"
+                android:layout_width="@dimen/progressSize" android:layout_height="@dimen/progressSize"
                 app:layout_constraintTop_toTopOf="@id/layerUserComment"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:loading_width="5dp"
+                app:loading_width="@dimen/progressWidth"
                 app:loading_color="@color/colorPrimary"
                 android:layout_centerInParent="true"
                 android:id="@+id/rotateLoading"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

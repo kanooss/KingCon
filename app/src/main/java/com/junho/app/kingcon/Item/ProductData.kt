@@ -3,6 +3,7 @@ package com.junho.app.kingcon.Item
 import android.util.Log
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*
 import com.amazonaws.services.dynamodbv2.model.AttributeValue
+import com.google.gson.annotations.SerializedName
 import com.junho.app.kingcon.Etc.StringData.PRODUCT_TABLE
 import com.junho.app.kingcon.Etc.StringData.TAG_HIGHLIGHT
 import com.junho.app.kingcon.Etc.User
@@ -21,27 +22,31 @@ import java.io.Serializable
  */
 @DynamoDBTable(tableName = PRODUCT_TABLE)
 data class ProductData (
-    @get:DynamoDBHashKey var type: String,
-    @get:DynamoDBRangeKey var id: String,
-    @get:DynamoDBAttribute (attributeName = "Name") var name: String = "",
-    @get:DynamoDBAttribute (attributeName = "Picture") var picture: String = "",
-    @get:DynamoDBAttribute (attributeName = "Company") var company: String = "",
-    @get:DynamoDBAttribute (attributeName = "Tag") var tag: ArrayList<String> = arrayListOf(),
-    @get:DynamoDBAttribute (attributeName = "Point") var point: Float = 0f,
-    @get:DynamoDBAttribute (attributeName = "TotalPoint") var totalPoint: Float = 0f,
-    @get:DynamoDBAttribute (attributeName = "Rating") var rating: Int = 0,
-    @get:DynamoDBAttribute (attributeName = "Wish") var wish: Int = 0,
-    @get:DynamoDBAttribute (attributeName = "Review") var review: Int = 0,
-    @get:DynamoDBAttribute (attributeName = "Graph") var graph: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0,0,0,0),
-    @get:DynamoDBAttribute (attributeName = "MaleGraph") var maleGraph: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0,0,0,0),
-    @get:DynamoDBAttribute (attributeName = "FemaleGraph") var femaleGraph: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0,0,0,0),
-    @get:DynamoDBAttribute (attributeName = "Male") var male: Int = 0,
-    @get:DynamoDBAttribute (attributeName = "Female") var female: Int = 0,
-    @get:DynamoDBAttribute (attributeName = "Info") var info: HashMap<String, String> = HashMap(),
+    @SerializedName("type") @get:DynamoDBHashKey var type: String,
+    @SerializedName("id") @get:DynamoDBRangeKey var id: String,
+    @SerializedName("Name") @get:DynamoDBAttribute (attributeName = "Name") var name: String = "",
+    @SerializedName("Picture") @get:DynamoDBAttribute (attributeName = "Picture") var picture: String = "",
+    @SerializedName("Company") @get:DynamoDBAttribute (attributeName = "Company") var company: String = "",
+    @SerializedName("Tag") @get:DynamoDBAttribute (attributeName = "Tag") var tag: ArrayList<String> = arrayListOf(),
+    @SerializedName("Point") @get:DynamoDBAttribute (attributeName = "Point") var point: Float = 0f,
+    @SerializedName("TotalPoint") @get:DynamoDBAttribute (attributeName = "TotalPoint") var totalPoint: Float = 0f,
+    @SerializedName("Rating") @get:DynamoDBAttribute (attributeName = "Rating") var rating: Int = 0,
+    @SerializedName("Wish") @get:DynamoDBAttribute (attributeName = "Wish") var wish: Int = 0,
+    @SerializedName("Review") @get:DynamoDBAttribute (attributeName = "Review") var review: Int = 0,
+    @SerializedName("Graph") @get:DynamoDBAttribute (attributeName = "Graph") var graph: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0,0,0,0),
+    @SerializedName("MaleGraph") @get:DynamoDBAttribute (attributeName = "MaleGraph") var maleGraph: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0,0,0,0),
+    @SerializedName("FemaleGraph") @get:DynamoDBAttribute (attributeName = "FemaleGraph") var femaleGraph: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0,0,0,0),
+    @SerializedName("Male") @get:DynamoDBAttribute (attributeName = "Male") var male: Int = 0,
+    @SerializedName("Female") @get:DynamoDBAttribute (attributeName = "Female") var female: Int = 0,
+    @SerializedName("Info") @get:DynamoDBAttribute (attributeName = "Info") var info: HashMap<String, String> = HashMap(),
     @DynamoDBIgnore var malePoint: Float = 0f,
     @DynamoDBIgnore var femalePoint: Float = 0f,
     @DynamoDBIgnore var bestReview: ArrayList<ReviewData> = arrayListOf(),
+    @DynamoDBIgnore var reviews: ArrayList<ReviewData> = arrayListOf(),
     @DynamoDBIgnore var myReview: ReviewData = ReviewData()): Serializable{
+
+    //내 평가 가져왔는지 확인
+    fun myReviewIsNull() = !(myReview.content.isNotBlank() || myReview.point != 0.0f || myReview.wish)
 
     //AttributeValue -> 태그어레이로
     fun setTagData(l: MutableList<AttributeValue>) {
@@ -55,15 +60,19 @@ data class ProductData (
                     this.tag[i] += TAG_HIGHLIGHT
                 }
         }
-        Log.d("highlight_tag",this.tag.toString())
     }
     //?
     fun updateReview(reviewData: ReviewData): Boolean{
         if(User.id == reviewData.id)
             myReview = reviewData
         for (i in 0 until bestReview.size) {
-            if(bestReview[i].id == reviewData.id) {
+            if(bestReview[i].userId == reviewData.userId) {
                 bestReview[i] = reviewData
+            }
+        }
+        for (i in 0 until reviews.size) {
+            if(reviews[i].userId == reviewData.userId) {
+                reviews[i] = reviewData
                 return true
             }
         }
@@ -73,6 +82,13 @@ data class ProductData (
     fun checkInBestReview(reviewData: ReviewData): Int{
         for (i in 0 until bestReview.size){
             if(bestReview[i].userId == reviewData.userId)
+                return i
+        }
+        return -1
+    }
+    fun checkInReviews(reviewData: ReviewData): Int{
+        for (i in 0 until reviews.size){
+            if(reviews[i].userId == reviewData.userId)
                 return i
         }
         return -1
@@ -89,7 +105,7 @@ data class ProductData (
         rating = 0
         male = 0
         female = 0
-        point = 0f
+        point = +0F
         malePoint = 0f
         femalePoint = 0f
     }

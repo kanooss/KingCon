@@ -20,29 +20,33 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme.CustomStatus">
-        <activity android:name=".Main.Review.ViewReviewDetailFragment">
+        <activity android:name=".main.Review.ViewReviewDetailFragment">
         </activity>
-        <activity android:name=".Main.Product.View.ViewPhotoDetail">
+        <activity android:name=".main.Product.View.ViewPhotoDetail">
         </activity>
-        <activity android:name=".Main.CreatePost">
+        <activity android:name=".main.CreatePost">
         </activity>
         <activity android:name=".Login.View.ViewSetTag">
         </activity>
-        <activity android:name=".Main.Product.View.ViewCreateReview"/>
-        <activity android:name=".Main.BottomNav.MyPage.ViewProfileCustom"/>
-        <activity android:name=".Main.ViewPhoto"/>
+        <activity android:name=".main.Product.View.ViewCreateReview"/>
+        <activity android:name=".main.bottom.MyPage.ViewProfileCustom"/>
+        <activity android:name=".main.ViewPhoto"/>
         <activity android:name=".Login.View.ViewSetInfo"/>
         <activity android:name=".Login.View.ViewForgotPass"/>
         <activity android:name=".Login.View.ViewConfirm"/>
         <activity android:name=".Login.View.ViewSignIn"/>
         <activity android:name=".Login.View.ViewSignUp"/>
         <activity
-                android:name=".Main.ViewMain"
-                android:theme="@style/AppTheme.CustomStatus"/>
+                android:name=".main.ViewMain"
+                android:theme="@style/AppTheme.CustomStatus">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        </activity>
         <activity android:name=".Login.View.ViewLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

@@ -1,9 +1,13 @@
 package com.junho.app.kingcon.Etc
 
+import android.annotation.SuppressLint
 import com.junho.app.kingcon.Item.UserData
 import com.junho.app.kingcon.Item.UserPreferData
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import java.io.*
-
+import java.lang.Exception
+@SuppressLint("CheckResult")
 //아이디 / 이름 / 사진 / 나이 / 제공자 / 평가수 / 위시수 / 리뷰수 / 평가리스트 / 위시리스트 / 리뷰리스트
 object User: Serializable {
     var id: String = ""
@@ -63,17 +67,26 @@ object User: Serializable {
     }
     //유저 데이터 업데이트
     fun localUserDataUpdate(){
-        val fos = FileOutputStream(StringData.userData())
-        val oos = ObjectOutputStream(fos)
-        oos.writeObject(UserData(User))
-        oos.flush()
+        Observable.just(FileOutputStream(StringData.userData()))
+            .map { ObjectOutputStream(it) }
+            .subscribeOn(Schedulers.io())
+            .subscribe {
+                it.writeObject(UserData(User))
+                it.flush()
+            }
+//        val fos = FileOutputStream(StringData.userData())
+//        val oos = ObjectOutputStream(fos)
+//        oos.writeObject(UserData(User))
+//        oos.flush()
     }
     //유저 데이터 가져오기
     fun localUserDataRead(file: File) {
         val fis = FileInputStream(file)
         val ois = ObjectInputStream(fis)
-        User.setUser(ois.readObject() as UserData)
-        ois.close()
+        try {
+            setUser(ois.readObject() as UserData)
+            ois.close()
+        }catch (e: Exception){}
     }
     //유저 리스트 데이터 업데이트
     fun localUserListUpdate(){
@@ -91,6 +104,15 @@ object User: Serializable {
         ois.close()
     }
 
+    fun dataReset(){
+        wish = 0
+        rating = 0
+        review = 0
+        ratingList.clear()
+        reviewList.clear()
+        wishList.clear()
+        localUserDataUpdate()
+    }
     //유저 로그아웃하면 데이터 초기화
     fun logOut() {
         id = ""
@@ -110,6 +132,7 @@ object User: Serializable {
         mapData[StringData.NOW_USER] = ""
         localUserListUpdate()
     }
+
     /**
      * User.mapData
      * NOW_USER -> 현재 접속된 유저 아이디

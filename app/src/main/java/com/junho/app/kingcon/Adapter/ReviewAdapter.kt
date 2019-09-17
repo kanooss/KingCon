@@ -2,7 +2,7 @@ package com.junho.app.kingcon.Adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
@@ -18,12 +18,12 @@ import kotlinx.android.synthetic.main.adapter_review_list.view.*
 
 class ReviewAdapter(var context: Context, private val reviewData: ArrayList<ReviewData>, private val callbackAdapter: CallbackAdapter.Review): RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
     override fun getItemCount(): Int = reviewData.size
-    override fun onCreateViewHolder(parent: ViewGroup, type: Int): ReviewAdapter.ReviewViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, type: Int): ReviewViewHolder {
         val inflate = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val mainView = inflate.inflate(R.layout.adapter_review_list, parent, false)
         return ReviewViewHolder(mainView)
     }
-    override fun onBindViewHolder(holder: ReviewAdapter.ReviewViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         holder.onBind(context, reviewData[position], callbackAdapter, position)
     }
     class ReviewViewHolder(val view: View): RecyclerView.ViewHolder(view){

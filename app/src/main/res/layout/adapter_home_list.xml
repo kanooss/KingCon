@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -10,7 +10,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         app:cardElevation="1dp">
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent" android:layout_height="match_parent"
             android:background="@drawable/product_rect"
             android:padding="10dp"
@@ -148,7 +148,7 @@
                 android:background="@color/gray0_5"
                 android:id="@+id/divider1_1"/>
         <!--태그 리스트-->
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@id/divider1_1"
                 app:layout_constraintTop_toBottomOf="@id/ivProduct"
@@ -161,7 +161,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:id="@+id/rvTagList">
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
         <!--자세히 보기 텍스트-->
         <TextView
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -174,5 +174,5 @@
                 android:gravity="right"
                 android:text="제품 자세히"
                 android:id="@+id/tvDetail"/>
-    </android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
